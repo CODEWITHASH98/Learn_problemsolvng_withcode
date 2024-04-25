@@ -1,18 +1,16 @@
 class Solution {
 public:
-    int minAddToMakeValid(string s) {
-        stack<char>str;
-        int count = 0 ;
-        for(int i =0;i<s.size();i++){
-            if(s[i]=='(')str.push(s[i]);
-            else{
-                if(str.empty())
-                count++;
-                else
-                str.pop();
-                }
-            
+    int minAddToMakeValid(string S) {
+     int ans = 0, bal = 0;
+        for (int i = 0; i < S.length(); ++i) {
+            bal += S[i]== '(' ? 1 : -1;
+            // It is guaranteed bal >= -1
+            if (bal == -1) {
+                ans++;
+                bal++;
+            }
         }
-        return str.size()+count;
+
+        return ans + bal;
     }
 };
